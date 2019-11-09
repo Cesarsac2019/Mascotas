@@ -1,0 +1,48 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <body class="text-center">
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<td>#</td>
+			<td>Nombre</td>
+			<td>Sexo</td>
+			<td>Fecha de Nacimiento</td>
+			<td>Edad</td>
+			<td>Adoptante</td>
+			<!-- <td>Registros</td> -->
+			<td>Acciones</td>
+		</tr>
+
+	</thead>
+	<tbody>
+		{% if ninios %}
+		{% for ninio in ninios %}
+
+
+		<tr>
+			<td>{{ ninio.id }}</td>
+			<td>{{ ninio.nombre }}</td>
+			<td>{{ ninio.sexo }}</td>
+			<td>{{ ninio.fecha_nac }}</td>
+			<td>{{ ninio.edad }}</td>
+			<td>{{ ninio.persona.nombre }} {{ ninio.persona.apellido }}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'ninio_edit' ninio.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'ninio_eliminar' ninio.id %}">Eliminar</a>
+
+			</td>
+		</tr>
+		{% endfor %}
+
+
+		{% else %}
+		<h1>No hay registros :(</h1>
+
+		{% endif %}
+	</tbody>
+</table>
+
+
+{% endblock %}
